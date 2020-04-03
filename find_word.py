@@ -13,7 +13,12 @@ engine = create_engine("postgresql+psycopg2://{}:{}@{}/{}".
 
 conn = engine.connect()
 
-
+def levenshtein(conn, worda, wordb):
+    lev = func.levenshtein(worda, wordb)
+    s = select([lev])
+    print(s)
+    result = conn.execute(s)
+    return [row[0] for row in result]
 
 
 def find_word(conn, word, limit_to=10):
@@ -25,3 +30,4 @@ def find_word(conn, word, limit_to=10):
     return [(row[1], row[2]) for row in result]
 
 
+print(levenshtein(conn, "butter", "better"))

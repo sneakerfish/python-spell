@@ -34,5 +34,10 @@ def decompose_ngrams():
         word = request.args['word']
         return jsonify(get_ngrams.get_ngrams(word))
 
+@app.route('/lev', methods=['GET'])
+def levenshtein_distance():
+    if 'worda' in request.args and 'wordb' in request.args:
+        return jsonify(find_word.levenshtein(conn, request.args['worda'], request.args['wordb']))
+
 if __name__ == '__main__':
     app.run(debug=True)
