@@ -13,7 +13,7 @@ engine = create_engine("postgresql+psycopg2://{}:{}@{}/{}".
 
 conn = engine.connect()
 
-word = "exactlally"
+
 
 
 def find_word(conn, word, limit_to=10):
@@ -23,3 +23,5 @@ def find_word(conn, word, limit_to=10):
                                         ngrams.c.ngram.in_(word_grams))).distinct().limit(limit_to).order_by(lev)
     result = conn.execute(s)
     return [(row[1], row[2]) for row in result]
+
+
