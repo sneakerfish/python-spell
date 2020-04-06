@@ -13,10 +13,7 @@ engine = create_engine("postgresql+psycopg2://{}:{}@{}/{}".
                      format(sql_user, sql_pass, sql_host, sql_db))
 
 conn = engine.connect()
-
-
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
